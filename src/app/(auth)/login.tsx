@@ -1,8 +1,9 @@
 import { Fontisto, SimpleLineIcons } from "@expo/vector-icons";
 import { Image } from "expo-image";
+import { router } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-import { AuthLogo } from "@/components/auth-logo";
+import { AuthScreen } from "@/components/auth-screen";
 import { AuthSwitchPrompt } from "@/components/auth-switch-prompt";
 import { AuthTextInput } from "@/components/auth-text-input";
 import { PrimaryButton } from "@/components/primary-button";
@@ -14,11 +15,7 @@ const SOCIAL_ICON_SIZE = 56;
 
 export default function LoginScreen() {
   return (
-    <View style={styles.container}>
-      <AuthLogo />
-      <Text style={styles.title} accessibilityRole="header">
-        Welcome
-      </Text>
+    <AuthScreen title="Welcome">
       <View style={styles.form}>
         <AuthTextInput
           renderIcon={(props) => <Fontisto name="email" {...props} />}
@@ -70,26 +67,14 @@ export default function LoginScreen() {
         <AuthSwitchPrompt
           prompt="Don't have an account?"
           linkLabel="Sign up here!"
+          onPress={() => router.push("/register")}
         />
       </View>
-    </View>
+    </AuthScreen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 24,
-    backgroundColor: colors.background,
-  },
-  title: {
-    marginVertical: 16,
-    fontSize: 28,
-    fontWeight: "bold",
-    color: colors.text,
-  },
   form: {
     alignSelf: "stretch",
     gap: 16,
