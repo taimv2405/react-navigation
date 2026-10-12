@@ -16,7 +16,12 @@ export function AuthTextInput({
 }: AuthTextInputProps) {
   return (
     <View style={styles.container}>
-      {renderIcon({ size: ICON_SIZE, color: colors.text })}
+      <View
+        accessibilityElementsHidden
+        importantForAccessibility="no-hide-descendants"
+      >
+        {renderIcon({ size: ICON_SIZE, color: colors.text })}
+      </View>
       <TextInput
         style={[styles.input, style]}
         placeholderTextColor={colors.placeholder}
