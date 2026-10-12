@@ -1,4 +1,4 @@
-import { Fontisto, Ionicons } from "@expo/vector-icons";
+import { Fontisto, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 
 import { AuthForm } from "@/components/auth-form";
 import { AuthScreen } from "@/components/auth-screen";
@@ -12,7 +12,7 @@ export default function RegisterScreen() {
           renderIcon={(props) => <Ionicons name="person-outline" {...props} />}
           placeholder="Enter username"
           autoCapitalize="none"
-          autoComplete="username-new"
+          autoComplete="username"
         />
         <AuthTextInput
           renderIcon={(props) => <Fontisto name="email" {...props} />}
@@ -20,6 +20,18 @@ export default function RegisterScreen() {
           keyboardType="email-address"
           autoCapitalize="none"
           autoComplete="email"
+        />
+        <AuthTextInput
+          renderIcon={(props) => <SimpleLineIcons name="lock" {...props} />}
+          placeholder="Enter password"
+          secureTextEntry
+          autoComplete="new-password"
+        />
+        <AuthTextInput
+          renderIcon={(props) => <SimpleLineIcons name="lock" {...props} />}
+          placeholder="Confirm password"
+          secureTextEntry
+          autoComplete="new-password"
         />
       </AuthForm>
     </AuthScreen>
