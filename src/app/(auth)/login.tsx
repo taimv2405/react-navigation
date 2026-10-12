@@ -1,3 +1,4 @@
+import { Fontisto, SimpleLineIcons } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
 
 import { AuthLogo } from "@/components/auth-logo";
@@ -11,7 +12,18 @@ export default function LoginScreen() {
       <Text style={styles.title} accessibilityRole="header">
         Welcome
       </Text>
-      <AuthTextInput icon="mail-outline" placeholder="Email" />
+      <View style={styles.form}>
+        <AuthTextInput
+          renderIcon={(props) => <Fontisto name="email" {...props} />}
+          placeholder="Email"
+        />
+        <AuthTextInput
+          renderIcon={(props) => <SimpleLineIcons name="lock" {...props} />}
+          placeholder="Password"
+          secureTextEntry
+          autoComplete="current-password"
+        />
+      </View>
     </View>
   );
 }
@@ -29,5 +41,9 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "bold",
     color: colors.text,
+  },
+  form: {
+    alignSelf: "stretch",
+    gap: 16,
   },
 });

@@ -1,21 +1,22 @@
-import { Ionicons } from "@expo/vector-icons";
-import { type ComponentProps } from "react";
+import { type ReactNode } from "react";
 import { StyleSheet, TextInput, type TextInputProps, View } from "react-native";
 
 import { colors } from "@/theme/colors";
 
+const ICON_SIZE = 24;
+
 type AuthTextInputProps = TextInputProps & {
-  icon: ComponentProps<typeof Ionicons>["name"];
+  renderIcon: (props: { size: number; color: string }) => ReactNode;
 };
 
 export function AuthTextInput({
-  icon,
+  renderIcon,
   style,
   ...inputProps
 }: AuthTextInputProps) {
   return (
     <View style={styles.container}>
-      <Ionicons name={icon} size={28} color={colors.text} />
+      {renderIcon({ size: ICON_SIZE, color: colors.text })}
       <TextInput
         style={[styles.input, style]}
         placeholderTextColor={colors.placeholder}
@@ -27,7 +28,6 @@ export function AuthTextInput({
 
 const styles = StyleSheet.create({
   container: {
-    alignSelf: "stretch",
     flexDirection: "row",
     alignItems: "center",
     height: 60,
