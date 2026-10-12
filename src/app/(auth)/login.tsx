@@ -3,6 +3,7 @@ import { Image } from "expo-image";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { AuthLogo } from "@/components/auth-logo";
+import { AuthSwitchPrompt } from "@/components/auth-switch-prompt";
 import { AuthTextInput } from "@/components/auth-text-input";
 import { PrimaryButton } from "@/components/primary-button";
 import { SocialLoginButton } from "@/components/social-login-button";
@@ -65,6 +66,12 @@ export default function LoginScreen() {
           />
         </SocialLoginButton>
       </View>
+      <View style={styles.switchPrompt}>
+        <AuthSwitchPrompt
+          prompt="Don't have an account?"
+          linkLabel="Sign up here!"
+        />
+      </View>
     </View>
   );
 }
@@ -97,6 +104,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 24,
     marginTop: 16,
+  },
+  switchPrompt: {
+    marginTop: 24,
   },
   socialIcon: {
     width: SOCIAL_ICON_SIZE,
