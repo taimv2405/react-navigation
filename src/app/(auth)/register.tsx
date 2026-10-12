@@ -1,7 +1,9 @@
 import { Fontisto, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+import { router } from "expo-router";
 
 import { AuthForm } from "@/components/auth-form";
 import { AuthScreen } from "@/components/auth-screen";
+import { AuthSwitchPrompt } from "@/components/auth-switch-prompt";
 import { AuthTextInput } from "@/components/auth-text-input";
 import { PrimaryButton } from "@/components/primary-button";
 import { showNotSupportedAlert } from "@/utils/not-supported-alert";
@@ -40,6 +42,11 @@ export default function RegisterScreen() {
           onPress={() => showNotSupportedAlert("Create account")}
         />
       </AuthForm>
+      <AuthSwitchPrompt
+        prompt="Already have an account?"
+        linkLabel="Login now!"
+        onPress={() => router.dismissTo("/login")}
+      />
     </AuthScreen>
   );
 }

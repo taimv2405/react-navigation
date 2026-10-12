@@ -24,6 +24,7 @@ export function AuthSwitchPrompt({
 
 const styles = StyleSheet.create({
   prompt: {
+    marginTop: 24,
     fontSize: 16,
     color: colors.text,
   },

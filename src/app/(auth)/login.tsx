@@ -64,13 +64,11 @@ export default function LoginScreen() {
           />
         </SocialLoginButton>
       </View>
-      <View style={styles.switchPrompt}>
-        <AuthSwitchPrompt
-          prompt="Don't have an account?"
-          linkLabel="Sign up here!"
-          onPress={() => router.push("/register")}
-        />
-      </View>
+      <AuthSwitchPrompt
+        prompt="Don't have an account?"
+        linkLabel="Sign up here!"
+        onPress={() => router.push("/register")}
+      />
     </AuthScreen>
   );
 }
@@ -86,9 +84,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 24,
     marginTop: 16,
-  },
-  switchPrompt: {
-    marginTop: 24,
   },
   socialIcon: {
     width: SOCIAL_ICON_SIZE,
