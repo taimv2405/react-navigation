@@ -1,56 +1,63 @@
-# Welcome to your Expo app 👋
+# React Navigation: luồng xác thực
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Bài thực hành 2, Bài 3 (IE307, UIT): luồng điều hướng xác thực cơ bản gồm đăng nhập, đăng ký, màn hình chính và đăng xuất. Dự án dùng Expo SDK 57 và Expo Router.
 
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Chạy ứng dụng
 
 ```bash
-npm run reset-project
+npm install
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Mở bằng Expo Go, giả lập Android hoặc iOS. Thư viện `react-native-keyboard-controller` có sẵn trong Expo Go nên không cần development build.
 
-### Other setup steps
+Kiểm tra mã nguồn:
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+```bash
+npx tsc --noEmit
+npx expo lint
+```
 
-## Learn more
+## Tài khoản mẫu
 
-To learn more about developing your project with Expo, look at the following resources:
+| Email | Mật khẩu |
+|---|---|
+| `23521382@gm.uit.edu.vn` | `vominhtai` |
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Tài khoản nằm tại [src/constants/mock-account.ts](src/constants/mock-account.ts). Đăng nhập sai sẽ hiện thông báo "Incorrect email or password.".
 
-## Join the community
+## Chức năng
 
-Join our community of developers creating universal apps.
+- Màn hình xác thực: đăng nhập (email, mật khẩu, quên mật khẩu, đăng nhập Facebook/Google) và đăng ký. Đề không yêu cầu hiện thực đăng ký, quên mật khẩu và đăng nhập mạng xã hội, nên các nút này hiện hộp thoại "This feature is not supported yet.".
+- Màn hình chính gồm 4 tab: Home, Categories, Favourites (có huy hiệu số lượng mục yêu thích) và Profile.
+- Nút LOG OUT ở Profile đưa người dùng về màn hình đăng nhập.
+- Màn hình tự cuộn để ô đang nhập không bị bàn phím che.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Cấu trúc thư mục
+
+```
+src/
+├── app/                  Expo Router: mỗi file là một màn hình
+│   ├── _layout.tsx       Stack gốc, chọn nhóm màn hình theo trạng thái đăng nhập
+│   ├── (auth)/           login, register
+│   └── (tabs)/           index (Home), categories, favourites, profile
+├── components/           Component dùng lại
+├── constants/            Hằng số (tài khoản mẫu)
+├── stores/               Zustand: auth-store, favourites-store
+├── theme/                Màu sắc
+└── utils/                Hàm tiện ích
+```
+
+## Quyết định thiết kế
+
+- **Điều hướng:** Expo Router với `Stack.Protected`. Trạng thái `isSignedIn` quyết định nhóm `(auth)` hay `(tabs)` được truy cập, nên đăng nhập và đăng xuất không cần gọi điều hướng thủ công.
+- **Quản lý trạng thái:** Zustand giữ trạng thái xác thực và danh sách yêu thích. Giá trị email và mật khẩu đang gõ nằm trong `useState` của màn Login, không đưa vào store, để mật khẩu không tồn tại trong bộ nhớ toàn ứng dụng.
+- **Style:** `StyleSheet`, không dùng style inline. Màu sắc tập trung tại [src/theme/colors.ts](src/theme/colors.ts).
+- **Bàn phím:** `KeyboardAwareScrollView` của `react-native-keyboard-controller`, vì `KeyboardAvoidingView` không đẩy được nội dung trong thử nghiệm trên thiết bị.
+- **Giao diện sáng:** `userInterfaceStyle` đặt `light`, vì thiết kế chỉ có một giao diện sáng, và để hộp thoại hệ thống đồng bộ với giao diện ứng dụng.
+- **Icon:** chọn từng icon khớp nhất với ảnh mẫu (Fontisto, SimpleLineIcons, Ionicons, FontAwesome), logo Facebook và Google dùng SVG.
+
+## Giới hạn
+
+- Trạng thái đăng nhập không được lưu, tắt ứng dụng là đăng xuất. Lưu trữ cục bộ thuộc Lab 03.
+- Kiểm tra email và mật khẩu chạy ngay trên ứng dụng. Với ứng dụng thật, việc xác thực phải do máy chủ thực hiện.
