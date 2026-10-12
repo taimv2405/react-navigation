@@ -1,5 +1,6 @@
 // Võ Minh Tài - 23521382
 import { SplashScreen, Stack } from "expo-router";
+import { useEffect } from "react";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 
 import { useAuthStore } from "@/stores/auth-store";
@@ -10,11 +11,11 @@ export default function RootLayout() {
   const isSignedIn = useAuthStore((state) => state.isSignedIn);
   const hasHydrated = useAuthStore((state) => state.hasHydrated);
 
-  if (!hasHydrated) {
-    return null;
-  }
-
-  SplashScreen.hide();
+  useEffect(() => {
+    if (hasHydrated) {
+      SplashScreen.hide();
+    }
+  }, [hasHydrated]);
 
   return (
     <KeyboardProvider>
