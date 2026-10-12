@@ -4,4 +4,5 @@ export const colors = {
   text: "#000000",
   border: "#555555",
   placeholder: "#757575",
+  accent: "#e91e8c",
 } as const;

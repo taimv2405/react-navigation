@@ -1,9 +1,13 @@
 import { Fontisto, SimpleLineIcons } from "@expo/vector-icons";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { AuthLogo } from "@/components/auth-logo";
 import { AuthTextInput } from "@/components/auth-text-input";
 import { colors } from "@/theme/colors";
+
+const handleForgotPassword = () => {
+  Alert.alert("Forgot password", "This feature is not supported yet.");
+};
 
 export default function LoginScreen() {
   return (
@@ -20,12 +24,22 @@ export default function LoginScreen() {
           autoCapitalize="none"
           autoComplete="email"
         />
-        <AuthTextInput
-          renderIcon={(props) => <SimpleLineIcons name="lock" {...props} />}
-          placeholder="Password"
-          secureTextEntry
-          autoComplete="current-password"
-        />
+        <View style={styles.passwordGroup}>
+          <AuthTextInput
+            renderIcon={(props) => <SimpleLineIcons name="lock" {...props} />}
+            placeholder="Password"
+            secureTextEntry
+            autoComplete="current-password"
+          />
+          <Pressable
+            style={styles.forgotPassword}
+            onPress={handleForgotPassword}
+            accessibilityRole="link"
+            hitSlop={8}
+          >
+            <Text style={styles.forgotPasswordText}>Forgot password?</Text>
+          </Pressable>
+        </View>
       </View>
     </View>
   );
@@ -48,5 +62,15 @@ const styles = StyleSheet.create({
   form: {
     alignSelf: "stretch",
     gap: 16,
+  },
+  passwordGroup: {
+    gap: 8,
+  },
+  forgotPassword: {
+    alignSelf: "flex-end",
+  },
+  forgotPasswordText: {
+    fontSize: 14,
+    color: colors.accent,
   },
 });
