@@ -1,7 +1,8 @@
 import { Fontisto, SimpleLineIcons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { router } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { AuthForm } from "@/components/auth-form";
 import { AuthScreen } from "@/components/auth-screen";
@@ -9,18 +10,31 @@ import { AuthSwitchPrompt } from "@/components/auth-switch-prompt";
 import { AuthTextInput } from "@/components/auth-text-input";
 import { PrimaryButton } from "@/components/primary-button";
 import { SocialLoginButton } from "@/components/social-login-button";
+import { useAuthStore } from "@/stores/auth-store";
 import { colors } from "@/theme/colors";
 import { showNotSupportedAlert } from "@/utils/not-supported-alert";
 
 const SOCIAL_ICON_SIZE = 56;
 
 export default function LoginScreen() {
+  const signIn = useAuthStore((state) => state.signIn);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    if (!signIn(email, password)) {
+      Alert.alert("Incorrect email or password.");
+    }
+  };
+
   return (
     <AuthScreen title="Welcome">
       <AuthForm>
         <AuthTextInput
           renderIcon={(props) => <Fontisto name="email" {...props} />}
           placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
           keyboardType="email-address"
           autoCapitalize="none"
           autoComplete="email"
@@ -29,6 +43,8 @@ export default function LoginScreen() {
           <AuthTextInput
             renderIcon={(props) => <SimpleLineIcons name="lock" {...props} />}
             placeholder="Password"
+            value={password}
+            onChangeText={setPassword}
             secureTextEntry
             autoComplete="current-password"
           />
@@ -41,7 +57,7 @@ export default function LoginScreen() {
             <Text style={styles.forgotPasswordText}>Forgot password?</Text>
           </Pressable>
         </View>
-        <PrimaryButton title="LOG IN" />
+        <PrimaryButton title="LOG IN" onPress={handleLogin} />
       </AuthForm>
       <Text style={styles.socialTitle}>Or login with</Text>
       <View style={styles.socialButtons}>
