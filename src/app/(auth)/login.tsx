@@ -1,14 +1,16 @@
-import { Fontisto, SimpleLineIcons } from "@expo/vector-icons";
-import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Fontisto,
+  MaterialCommunityIcons,
+  SimpleLineIcons,
+} from "@expo/vector-icons";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { AuthLogo } from "@/components/auth-logo";
 import { AuthTextInput } from "@/components/auth-text-input";
 import { PrimaryButton } from "@/components/primary-button";
+import { SocialLoginButton } from "@/components/social-login-button";
 import { colors } from "@/theme/colors";
-
-const handleForgotPassword = () => {
-  Alert.alert("Forgot password", "This feature is not supported yet.");
-};
+import { showNotSupportedAlert } from "@/utils/not-supported-alert";
 
 export default function LoginScreen() {
   return (
@@ -34,7 +36,7 @@ export default function LoginScreen() {
           />
           <Pressable
             style={styles.forgotPassword}
-            onPress={handleForgotPassword}
+            onPress={() => showNotSupportedAlert("Forgot password")}
             accessibilityRole="link"
             hitSlop={8}
           >
@@ -44,6 +46,18 @@ export default function LoginScreen() {
         <PrimaryButton title="LOG IN" />
       </View>
       <Text style={styles.socialTitle}>Or login with</Text>
+      <View style={styles.socialButtons}>
+        <SocialLoginButton
+          provider="Facebook"
+          onPress={() => showNotSupportedAlert("Facebook")}
+        >
+          <MaterialCommunityIcons
+            name="facebook"
+            size={56}
+            color={colors.facebook}
+          />
+        </SocialLoginButton>
+      </View>
     </View>
   );
 }
@@ -71,6 +85,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: colors.text,
+  },
+  socialButtons: {
+    flexDirection: "row",
+    gap: 24,
+    marginTop: 16,
   },
   passwordGroup: {
     gap: 8,
