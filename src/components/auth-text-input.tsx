@@ -1,5 +1,5 @@
 // Võ Minh Tài - 23521382
-import { type ReactNode } from "react";
+import { type ReactNode, type Ref } from "react";
 import { StyleSheet, TextInput, type TextInputProps, View } from "react-native";
 
 import { colors } from "@/theme/colors";
@@ -7,10 +7,13 @@ import { colors } from "@/theme/colors";
 const ICON_SIZE = 24;
 
 type AuthTextInputProps = TextInputProps & {
+  ref?: Ref<TextInput>;
+  label: string;
   renderIcon: (props: { size: number; color: string }) => ReactNode;
 };
 
 export function AuthTextInput({
+  label,
   renderIcon,
   style,
   ...inputProps
@@ -25,6 +28,7 @@ export function AuthTextInput({
       </View>
       <TextInput
         style={[styles.input, style]}
+        accessibilityLabel={label}
         placeholderTextColor={colors.placeholder}
         {...inputProps}
       />
@@ -36,8 +40,9 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    height: 60,
+    minHeight: 60,
     paddingHorizontal: 20,
+    paddingVertical: 8,
     borderWidth: 1,
     borderColor: colors.border,
     borderRadius: 12,

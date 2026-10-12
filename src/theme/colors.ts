@@ -4,9 +4,9 @@ export const colors = {
   logoBackground: "#222222",
   text: "#000000",
   border: "#555555",
-  placeholder: "#757575",
-  accent: "#e91e8c",
+  placeholder: "#6b6b6b",
+  accent: "#c2185b",
   link: "#0000ee",
-  primary: "#e67300",
+  primary: "#b35900",
   onPrimary: "#ffffff",
 } as const;

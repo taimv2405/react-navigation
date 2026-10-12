@@ -1,8 +1,15 @@
 // Võ Minh Tài - 23521382
 import { Fontisto, SimpleLineIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { useState } from "react";
-import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
+import { useRef, useState } from "react";
+import {
+  Alert,
+  Pressable,
+  StyleSheet,
+  Text,
+  type TextInput,
+  View,
+} from "react-native";
 
 import { AuthForm } from "@/components/auth-form";
 import { AuthScreen } from "@/components/auth-screen";
@@ -18,6 +25,7 @@ export default function LoginScreen() {
   const signIn = useAuthStore((state) => state.signIn);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const passwordRef = useRef<TextInput>(null);
 
   const handleLogin = () => {
     if (!signIn(email, password)) {
@@ -30,21 +38,29 @@ export default function LoginScreen() {
       <AuthForm>
         <AuthTextInput
           renderIcon={(props) => <Fontisto name="email" {...props} />}
+          label="Email"
           placeholder="Email"
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
           autoCapitalize="none"
           autoComplete="email"
+          returnKeyType="next"
+          submitBehavior="submit"
+          onSubmitEditing={() => passwordRef.current?.focus()}
         />
         <View style={styles.passwordGroup}>
           <AuthTextInput
             renderIcon={(props) => <SimpleLineIcons name="lock" {...props} />}
+            ref={passwordRef}
+            label="Password"
             placeholder="Password"
             value={password}
             onChangeText={setPassword}
             secureTextEntry
             autoComplete="current-password"
+            returnKeyType="go"
+            onSubmitEditing={handleLogin}
           />
           <Pressable
             style={styles.forgotPassword}

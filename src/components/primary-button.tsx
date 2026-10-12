@@ -21,7 +21,8 @@ export function PrimaryButton({ title, ...pressableProps }: PrimaryButtonProps) 
 
 const styles = StyleSheet.create({
   button: {
-    height: 60,
+    minHeight: 60,
+    paddingVertical: 12,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 12,

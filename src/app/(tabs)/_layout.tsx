@@ -30,6 +30,7 @@ export default function TabsLayout() {
         options={{
           title: "Favourites",
           tabBarBadge: favouriteCount > 0 ? favouriteCount : undefined,
+          tabBarAccessibilityLabel: `Favourites, ${favouriteCount} items`,
           tabBarIcon: (props) => <TabIcon name="heart" {...props} />,
         }}
       />
