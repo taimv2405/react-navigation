@@ -3,6 +3,7 @@ import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { AuthLogo } from "@/components/auth-logo";
 import { AuthTextInput } from "@/components/auth-text-input";
+import { PrimaryButton } from "@/components/primary-button";
 import { colors } from "@/theme/colors";
 
 const handleForgotPassword = () => {
@@ -40,6 +41,7 @@ export default function LoginScreen() {
             <Text style={styles.forgotPasswordText}>Forgot password?</Text>
           </Pressable>
         </View>
+        <PrimaryButton title="LOG IN" />
       </View>
     </View>
   );

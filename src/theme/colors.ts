@@ -5,4 +5,6 @@ export const colors = {
   border: "#555555",
   placeholder: "#757575",
   accent: "#e91e8c",
+  primary: "#e67300",
+  onPrimary: "#ffffff",
 } as const;
