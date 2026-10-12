@@ -3,6 +3,8 @@ import { Fontisto, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 import { AuthForm } from "@/components/auth-form";
 import { AuthScreen } from "@/components/auth-screen";
 import { AuthTextInput } from "@/components/auth-text-input";
+import { PrimaryButton } from "@/components/primary-button";
+import { showNotSupportedAlert } from "@/utils/not-supported-alert";
 
 export default function RegisterScreen() {
   return (
@@ -32,6 +34,10 @@ export default function RegisterScreen() {
           placeholder="Confirm password"
           secureTextEntry
           autoComplete="new-password"
+        />
+        <PrimaryButton
+          title="CREATE"
+          onPress={() => showNotSupportedAlert("Create account")}
         />
       </AuthForm>
     </AuthScreen>
