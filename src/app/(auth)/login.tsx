@@ -43,6 +43,7 @@ export default function LoginScreen() {
         </View>
         <PrimaryButton title="LOG IN" />
       </View>
+      <Text style={styles.socialTitle}>Or login with</Text>
     </View>
   );
 }
@@ -64,6 +65,12 @@ const styles = StyleSheet.create({
   form: {
     alignSelf: "stretch",
     gap: 16,
+  },
+  socialTitle: {
+    marginTop: 24,
+    fontSize: 20,
+    fontWeight: "bold",
+    color: colors.text,
   },
   passwordGroup: {
     gap: 8,
