@@ -1,5 +1,7 @@
 import { type ReactNode } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import { AuthLogo } from "@/components/auth-logo";
 import { colors } from "@/theme/colors";
@@ -11,23 +13,32 @@ type AuthScreenProps = {
 
 export function AuthScreen({ title, children }: AuthScreenProps) {
   return (
-    <View style={styles.container}>
-      <AuthLogo />
-      <Text style={styles.title} accessibilityRole="header">
-        {title}
-      </Text>
-      {children}
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={styles.content}
+        keyboardShouldPersistTaps="handled"
+      >
+        <AuthLogo />
+        <Text style={styles.title} accessibilityRole="header">
+          {title}
+        </Text>
+        {children}
+      </KeyboardAwareScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
+    backgroundColor: colors.background,
+  },
+  content: {
+    flexGrow: 1,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 24,
-    backgroundColor: colors.background,
+    paddingVertical: 24,
   },
   title: {
     marginVertical: 16,
