@@ -1,3 +1,4 @@
+// Võ Minh Tài - 23521382
 import { Stack } from "expo-router";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 

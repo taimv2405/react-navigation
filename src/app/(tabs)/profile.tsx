@@ -1,3 +1,4 @@
+// Võ Minh Tài - 23521382
 import { Button } from "react-native";
 
 import { ScreenTitle } from "@/components/screen-title";

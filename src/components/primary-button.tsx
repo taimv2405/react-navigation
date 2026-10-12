@@ -1,3 +1,4 @@
+// Võ Minh Tài - 23521382
 import { Pressable, type PressableProps, StyleSheet, Text } from "react-native";
 
 import { colors } from "@/theme/colors";

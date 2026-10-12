@@ -1,3 +1,4 @@
+// Võ Minh Tài - 23521382
 import { type ReactNode } from "react";
 import { StyleSheet, View } from "react-native";
 

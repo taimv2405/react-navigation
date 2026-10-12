@@ -1,3 +1,4 @@
+// Võ Minh Tài - 23521382
 import { FontAwesome } from "@expo/vector-icons";
 import { type ComponentProps } from "react";
 import { type ColorValue } from "react-native";

@@ -1,3 +1,4 @@
+// Võ Minh Tài - 23521382
 import { StyleSheet, Text, type TextProps } from "react-native";
 
 import { colors } from "@/theme/colors";

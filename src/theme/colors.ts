@@ -1,3 +1,4 @@
+// Võ Minh Tài - 23521382
 export const colors = {
   background: "#f2f2f2",
   logoBackground: "#222222",

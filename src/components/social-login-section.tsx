@@ -1,3 +1,4 @@
+// Võ Minh Tài - 23521382
 import { Image } from "expo-image";
 import { StyleSheet, Text, View } from "react-native";
 

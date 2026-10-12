@@ -1,3 +1,4 @@
+// Võ Minh Tài - 23521382
 import { type ReactNode } from "react";
 import { StyleSheet, Text } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";

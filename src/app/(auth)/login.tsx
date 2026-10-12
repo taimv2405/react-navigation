@@ -1,3 +1,4 @@
+// Võ Minh Tài - 23521382
 import { Fontisto, SimpleLineIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useState } from "react";

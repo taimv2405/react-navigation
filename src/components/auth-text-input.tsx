@@ -1,3 +1,4 @@
+// Võ Minh Tài - 23521382
 import { type ReactNode } from "react";
 import { StyleSheet, TextInput, type TextInputProps, View } from "react-native";
 

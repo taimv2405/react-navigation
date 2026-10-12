@@ -1,3 +1,4 @@
+// Võ Minh Tài - 23521382
 import { Alert } from "react-native";
 
 export function showNotSupportedAlert(title: string) {
