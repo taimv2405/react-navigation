@@ -1,8 +1,13 @@
 import { Tabs } from "expo-router";
 
 import { TabIcon } from "@/components/tab-icon";
+import { useFavouritesStore } from "@/stores/favourites-store";
 
 export default function TabsLayout() {
+  const favouriteCount = useFavouritesStore(
+    (state) => state.favouriteIds.length,
+  );
+
   return (
     <Tabs screenOptions={{ headerShown: false }}>
       <Tabs.Screen
@@ -23,6 +28,7 @@ export default function TabsLayout() {
         name="favourites"
         options={{
           title: "Favourites",
+          tabBarBadge: favouriteCount > 0 ? favouriteCount : undefined,
           tabBarIcon: (props) => <TabIcon name="heart" {...props} />,
         }}
       />
