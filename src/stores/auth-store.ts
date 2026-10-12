@@ -5,6 +5,7 @@ import { MOCK_ACCOUNT } from "@/constants/mock-account";
 interface AuthState {
   isSignedIn: boolean;
   signIn: (email: string, password: string) => boolean;
+  signOut: () => void;
 }
 
 export const useAuthStore = create<AuthState>()((set) => ({
@@ -16,4 +17,5 @@ export const useAuthStore = create<AuthState>()((set) => ({
     set({ isSignedIn: isValid });
     return isValid;
   },
+  signOut: () => set({ isSignedIn: false }),
 }));
