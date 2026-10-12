@@ -3,6 +3,7 @@ import { Image } from "expo-image";
 import { router } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
+import { AuthForm } from "@/components/auth-form";
 import { AuthScreen } from "@/components/auth-screen";
 import { AuthSwitchPrompt } from "@/components/auth-switch-prompt";
 import { AuthTextInput } from "@/components/auth-text-input";
@@ -16,7 +17,7 @@ const SOCIAL_ICON_SIZE = 56;
 export default function LoginScreen() {
   return (
     <AuthScreen title="Welcome">
-      <View style={styles.form}>
+      <AuthForm>
         <AuthTextInput
           renderIcon={(props) => <Fontisto name="email" {...props} />}
           placeholder="Email"
@@ -41,7 +42,7 @@ export default function LoginScreen() {
           </Pressable>
         </View>
         <PrimaryButton title="LOG IN" />
-      </View>
+      </AuthForm>
       <Text style={styles.socialTitle}>Or login with</Text>
       <View style={styles.socialButtons}>
         <SocialLoginButton
@@ -75,10 +76,6 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
-  form: {
-    alignSelf: "stretch",
-    gap: 16,
-  },
   socialTitle: {
     marginTop: 24,
     fontSize: 20,
