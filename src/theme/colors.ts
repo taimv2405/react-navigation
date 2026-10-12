@@ -7,5 +7,4 @@ export const colors = {
   accent: "#e91e8c",
   primary: "#e67300",
   onPrimary: "#ffffff",
-  facebook: "#1877f2",
 } as const;

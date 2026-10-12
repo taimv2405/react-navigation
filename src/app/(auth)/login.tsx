@@ -1,8 +1,5 @@
-import {
-  Fontisto,
-  MaterialCommunityIcons,
-  SimpleLineIcons,
-} from "@expo/vector-icons";
+import { Fontisto, SimpleLineIcons } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { AuthLogo } from "@/components/auth-logo";
@@ -11,6 +8,8 @@ import { PrimaryButton } from "@/components/primary-button";
 import { SocialLoginButton } from "@/components/social-login-button";
 import { colors } from "@/theme/colors";
 import { showNotSupportedAlert } from "@/utils/not-supported-alert";
+
+const SOCIAL_ICON_SIZE = 56;
 
 export default function LoginScreen() {
   return (
@@ -51,10 +50,18 @@ export default function LoginScreen() {
           provider="Facebook"
           onPress={() => showNotSupportedAlert("Facebook")}
         >
-          <MaterialCommunityIcons
-            name="facebook"
-            size={56}
-            color={colors.facebook}
+          <Image
+            source={require("@/assets/images/facebook-logo.svg")}
+            style={styles.socialIcon}
+          />
+        </SocialLoginButton>
+        <SocialLoginButton
+          provider="Google"
+          onPress={() => showNotSupportedAlert("Google")}
+        >
+          <Image
+            source={require("@/assets/images/google-logo.svg")}
+            style={styles.socialIcon}
           />
         </SocialLoginButton>
       </View>
@@ -90,6 +97,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 24,
     marginTop: 16,
+  },
+  socialIcon: {
+    width: SOCIAL_ICON_SIZE,
+    height: SOCIAL_ICON_SIZE,
   },
   passwordGroup: {
     gap: 8,
