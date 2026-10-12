@@ -16,6 +16,9 @@ export default function LoginScreen() {
         <AuthTextInput
           renderIcon={(props) => <Fontisto name="email" {...props} />}
           placeholder="Email"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoComplete="email"
         />
         <AuthTextInput
           renderIcon={(props) => <SimpleLineIcons name="lock" {...props} />}
